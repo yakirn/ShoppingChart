@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shoppin Chart by Yakir</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.css">
+</head>
+<body>
+
+
+  <div class="container">
+    <h1>Shopping Chart</h1>
+    <hr />
+    <div class="page"></div>
+  </div>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+
+  <script type="text/template" id="product-list-template">
+    <hr />
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th>Name</th><th>Description</th><th>Price</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(products, function(product) { %>
+          <tr>
+            <td><%= htmlEncode(product.get('name')) %></td>
+            <td><%= htmlEncode(product.get('description')) %></td>
+            <td><%= htmlEncode(product.get('price')) %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </script>
+
+  <script>
+    function htmlEncode(value){
+      return $('<div/>').text(value).html();
+    }
+
+    var Prodducts = Backbone.Collection.extend({
+      url: '/products'
+    });
+
+    var ProductListView = Backbone.View.extend({
+      el: '.page',
+      render: function () {
+        var that = this;
+        var product = new Prodducts();
+        product.fetch({
+          success: function (products) {
+            var template = _.template($('#product-list-template').html(), {products: products.models});
+            that.$el.html(template);
+          }
+        })
+      }
+    });
+
+    var productListView = new ProductListView();
+
+    var Router = Backbone.Router.extend({
+        routes: {
+          "": "home"
+        }
+    });
+
+    var router = new Router;
+    router.on('route:home', function() {
+      // render user list
+      userListView.render();
+    })
+    Backbone.history.start();
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shoppin Chart by Yakir</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+  <div class="container">
+    <h1>Shopping Chart</h1>
+    <hr />
+    <div id="app">
+      <div class="list">
+      <table class="table striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="product-list">
+        </tbody>
+    </table>
+      </div>
+      <div class="stats"></div>
+    </div>
+  </div>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+
+  <script type="text/template" id="product-template">
+    <td><%= htmlEncode(product.name) %></td>
+    <td><%= htmlEncode(product.description) %></td>
+    <td><%= htmlEncode(product.price) %></td>
+    <td>
+      <div class="input-group">
+        <span class="">
+          <button class="btn btn-default btn-add" type="button"><i class="fa fa-plus"></i></button>
+          <button class="btn btn-default btn-remove" type="button"><i class="fa fa-minus"></i></button>
+        </span>
+      </div>
+    </td>
+  </script>
+
+<script type="text/template" id="stats-template">
+    <div class="items stats"><b><%= count %> Items</b> Total: <b> <%= subtotal %> $</b> </div>
+</script>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
