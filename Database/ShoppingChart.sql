@@ -40,7 +40,7 @@ INSERT INTO `Products` (`id`, `name`, `price`, `description`)
 VALUES
 	(1,'Magic Mouse',59.45,'A mouse with touch'),
 	(2,'Wireless USB Mouse',15,'Basic mouse'),
-	(3,'SSD HDD',200.89,'I Got a need for speed'),
+	(3,'SSD HDD',200.5,'I Got a need for speed'),
 	(4,'LG Screen 23\"',150,'23 Inch LED Screen'),
 	(5,'MacBook Pro 13',1600,'Apple\'s finest');
 
